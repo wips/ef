@@ -1,0 +1,12 @@
+{
+    "name": "ef/test",
+    "require": {
+        "laravel/framework": "4.1.*",
+        "alchemy/phlickr": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ef\\": "ef-test/"
+        }
+    }
+}
