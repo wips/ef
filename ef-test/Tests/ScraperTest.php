@@ -1,4 +1,5 @@
 <?php
+
 namespace Ef\Tests;
 
 use Ef\Scraper;

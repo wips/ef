@@ -1,12 +1,11 @@
 ef
 ==
 
-some php vs flickr practice
-
+Some php vs flickr practice
 
 Set up:
 1. Install composer
-2. Run "composer isntall"
+2. Run "composer install"
 
 Tests:
 1. Install PHPUnit
