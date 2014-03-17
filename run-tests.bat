@@ -1,1 +1,1 @@
-phpunit -v --debug --bootstrap ef-test\Tests\bootstrap.php ef-test\Tests
+phpunit --bootstrap ef-test\Tests\bootstrap.php ef-test\Tests

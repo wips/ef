@@ -1,4 +1,9 @@
 <?php
-    require __DIR__ . '/../vendor/autoload.php';
-    $scraper = new Ef\Scraper();
-    $scraper->act();
+namespace Ef;
+//use Ef\Storage;
+
+require __DIR__ . '/../vendor/autoload.php';
+require './constants.php';
+
+$scraper = new Scraper(new Storage\File(), new Flickr());
+$scraper->act();

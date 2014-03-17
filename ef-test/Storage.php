@@ -1,13 +1,7 @@
 <?php
-
 namespace Ef;
 
-class Storage {
-    public function save() {
-
-    }
-
-    public function getLastSavedPage() {
-
-    }
+abstract class Storage {
+    abstract public function save(array $data);
+    abstract public function getSavedPagesNumber();
 }
