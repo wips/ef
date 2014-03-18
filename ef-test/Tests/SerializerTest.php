@@ -16,7 +16,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
         $serialized = array();
         foreach ($photos as $photo) {
             $sizes = $photo->getSizes();
-            $sizes = $sizes[\Phlickr_Photo::SIZE_ORIGINAL];
+            $sizes = $sizes['o'];
             $url = sprintf(
                 "http://farm%d.static.flickr.com/%d/%s_%s.jpg",
                 $photo->getFarm(),
@@ -55,7 +55,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 
     private function createPhoto($width, $height, $title, $userId, $farm, $server, $id, $secret) {
         $sizes = array(
-            \Phlickr_Photo::SIZE_ORIGINAL => array($width, $height)
+            'o' => array($width, $height)
         );
         $photo = $this->getMockBuilder('Phlickr_Photo')
             ->disableOriginalConstructor()
