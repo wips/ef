@@ -2,8 +2,8 @@
     "name": "ef/test",
     "require": {
         "laravel/framework": "4.1.*",
-        "alchemy/phlickr": "*",
-        "knplabs/gaufrette": "*"
+        "alchemy/phlickr": "0.2.7",
+        "knplabs/gaufrette": "0.1.7"
     },
     "autoload": {
         "psr-4": {
