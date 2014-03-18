@@ -4,6 +4,8 @@ ef
 Some php vs flickr practice
 ---------------------------
 
+[![Build Status](https://api.travis-ci.org/wips/ef.png)](https://travis-ci.org/wips/ef)
+
 Set up:
 
 1. Install composer
