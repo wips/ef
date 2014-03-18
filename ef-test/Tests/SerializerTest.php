@@ -61,6 +61,9 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
             ->disableOriginalConstructor()
             ->getMock();
         $photo->expects($this->any())
+            ->method('getRequestMethodName')
+            ->will($this->returnValue('GET'));
+        $photo->expects($this->any())
             ->method('getSizes')
             ->will($this->returnValue($sizes));
         $photo->expects($this->any())
