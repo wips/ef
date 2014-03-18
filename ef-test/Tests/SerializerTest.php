@@ -16,12 +16,20 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
         $serialized = array();
         foreach ($photos as $photo) {
             $sizes = $photo->getSizes();
+            $sizes = $sizes[\Phlickr_Photo::SIZE_ORIGINAL];
+            $url = sprintf(
+                "http://farm%d.static.flickr.com/%d/%s_%s.jpg",
+                $photo->getFarm(),
+                $photo->getServer(),
+                $photo->getId(),
+                $photo->getSecret()
+            );
             $serialized[] = array(
-                $sizes['width'],
-                $sizes['height'],
+                $sizes[0],
+                $sizes[1],
                 $photo->getTitle(),
                 $photo->getUserId(),
-                $photo->buildImgUrl()
+                $url
             );
         }
 
@@ -31,15 +39,23 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
     private function createPhotos($length) {
         $photos = array();
         for ($i = 0; $i < $length; $i++) {
-            $photos[] = $this->createPhoto($i, $i*2, "title$i", "user$i", "url$i");
+            $photos[] = $this->createPhoto(
+                $i,
+                $i*2,
+                "title$i",
+                "user$i",
+                "farm$i",
+                "server$i",
+                "id$i",
+                "secret$i"
+            );
         }
         return $photos;
     }
 
-    private function createPhoto($width, $height, $title, $userId, $imgUrl) {
+    private function createPhoto($width, $height, $title, $userId, $farm, $server, $id, $secret) {
         $sizes = array(
-            'width' => $width,
-            'height' => $height
+            \Phlickr_Photo::SIZE_ORIGINAL => array($width, $height)
         );
         $photo = $this->getMockBuilder('Phlickr_Photo')
             ->disableOriginalConstructor()
@@ -54,8 +70,17 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
             ->method('getUserId')
             ->will($this->returnValue($userId));
         $photo->expects($this->any())
-            ->method('buildImgUrl')
-            ->will($this->returnValue($imgUrl));
+            ->method('getFarm')
+            ->will($this->returnValue($farm));
+        $photo->expects($this->any())
+            ->method('getServer')
+            ->will($this->returnValue($server));
+        $photo->expects($this->any())
+            ->method('getId')
+            ->will($this->returnValue($id));
+        $photo->expects($this->any())
+            ->method('getSecret')
+            ->will($this->returnValue($secret));
         return $photo;
     }
 }

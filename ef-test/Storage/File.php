@@ -15,11 +15,15 @@ class File extends \Ef\Storage {
     }
 
     function save(array $data) {
-        $serialized = array_merge(
-            unserialize($this->fs->read(EF_STORE_FILE)),
-            $data
-        );
-        $this->fs->write(EF_STORE_FILE, $serialized);
+        $contents = $this->fs->read(EF_STORE_FILE);
+
+        if ($contents == '') {
+            $toSave = $data;
+        } else {
+            $toSave = array_merge(unserialize($contents), $data);
+        }
+
+        $this->fs->write(EF_STORE_FILE, serialize($toSave), true);
     }
 }
  

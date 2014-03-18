@@ -12,17 +12,19 @@ class FileTest extends \PHPUnit_Framework_TestCase {
         $this->fs = $this->getMockBuilder('Gaufrette\Filesystem', array('read'))
             ->disableOriginalConstructor()
             ->getMock();
-        $this->fs->expects($this->once())
-            ->method('read')
-            ->with(EF_STORE_FILE)
-            ->will($this->returnValue($this->dataFromFile));
     }
+
     /**
      * @covers  \Ef\Storage\File::getSavedPagesNumber
      * @test
      */
     public function countSavedPages()
     {
+        $this->fs->expects($this->once())
+            ->method('read')
+            ->with(EF_STORE_FILE)
+            ->will($this->returnValue($this->dataFromFile));
+
         $sut = new File($this->fs);
         $this->assertEquals($this->pages, $sut->getSavedPagesNumber());
     }
@@ -35,11 +37,35 @@ class FileTest extends \PHPUnit_Framework_TestCase {
         $sut = new File($this->fs);
         $dataToSave = $this->createData(1);
 
-        $serialized = array_merge(unserialize($this->dataFromFile), $dataToSave);
+        $serialized = serialize(array_merge(unserialize($this->dataFromFile), $dataToSave));
 
         $this->fs->expects($this->once())
             ->method('write')
-            ->with(EF_STORE_FILE, $serialized);
+            ->with(EF_STORE_FILE, $serialized, true);
+        $this->fs->expects($this->once())
+            ->method('read')
+            ->with(EF_STORE_FILE)
+            ->will($this->returnValue($this->dataFromFile));
+
+        $sut->save($dataToSave);
+    }
+
+    /**
+     * @covers  \Ef\Storage\File::save
+     * @test
+     */
+    public function savePhotosInEmptyFile() {
+        $sut = new File($this->fs);
+        $dataToSave = $this->createData(1);
+
+        $this->fs->expects($this->once())
+            ->method('read')
+            ->with(EF_STORE_FILE)
+            ->will($this->returnValue(''));
+
+        $this->fs->expects($this->once())
+            ->method('write')
+            ->with(EF_STORE_FILE, serialize($dataToSave), true);
 
         $sut->save($dataToSave);
     }
