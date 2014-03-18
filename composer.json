@@ -1,7 +1,7 @@
 {
     "name": "ef/test",
     "require": {
-        "laravel/framework": "4.1.*",
+        "phpixie/core": "2.*@dev",
         "alchemy/phlickr": "0.2.7",
         "knplabs/gaufrette": "0.1.7"
     },
