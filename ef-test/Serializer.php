@@ -17,7 +17,7 @@ class Serializer {
         }
         return $serialized;
     }
-    protected function imgUrl(\Phlickr_Photo $photo) {
+    protected function imgUrl(\Object $photo) {
         return sprintf(
             "http://farm%d.static.flickr.com/%d/%s_%s.jpg",
             $photo->getFarm(),

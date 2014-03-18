@@ -57,12 +57,15 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
         $sizes = array(
             'o' => array($width, $height)
         );
-        $photo = $this->getMockBuilder('Phlickr_Photo')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $photo->expects($this->any())
-            ->method('getRequestMethodName')
-            ->will($this->returnValue('GET'));
+        $photo = $this->getMock('Object', array(
+            'getSizes',
+            'getTitle',
+            'getUserId',
+            'getFarm',
+            'getServer',
+            'getId',
+            'getSecret'
+        ));
         $photo->expects($this->any())
             ->method('getSizes')
             ->will($this->returnValue($sizes));
