@@ -1,7 +1,7 @@
 {
     "name": "ef/test",
     "require": {
-        "phpixie/core": "2.*@dev",
+        "silex/silex": "~1.1",
         "alchemy/phlickr": "0.2.7",
         "knplabs/gaufrette": "0.1.7"
     },
