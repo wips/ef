@@ -1,6 +1,7 @@
 ef
 ==
 [![Build Status](https://api.travis-ci.org/wips/ef.png)](https://travis-ci.org/wips/ef)
+[![Coverage Status](https://coveralls.io/repos/wips/ef/badge.png)](https://coveralls.io/r/wips/ef)
 
 Some php vs flickr practice
 ---------------------------
