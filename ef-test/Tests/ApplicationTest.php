@@ -40,7 +40,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase {
         $self = $this;
         $this->app->expects($this->once())
             ->method('get')
-            ->with('/images/id/{id}')
+            ->with('/images/{title}/{user}/{url}/{width}/{height}')
             ->will($this->returnCallback(function ($route, $callback) use ($self, $json) {
                 $handlerResult = $callback();
                 $self->assertEquals($handlerResult, $json);
