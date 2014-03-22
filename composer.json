@@ -5,6 +5,9 @@
         "alchemy/phlickr": "0.2.7",
         "knplabs/gaufrette": "0.1.7"
     },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "Ef\\": "ef-test/"

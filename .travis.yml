@@ -1,10 +1,18 @@
 language: php
 
 php:
-  - 5.5
+  - 5.3
+
+before_script:
+ - wget http://getcomposer.org/composer.phar
+ - composer install --dev --no-interaction
 
 install:
   composer install
 
 script:
-  phpunit --bootstrap ef-test/Tests/bootstrap.php ef-test/Tests
+  mkdir -p build/logs
+  phpunit --coverage-clover build/logs/clover.xml --bootstrap ef-test/Tests/bootstrap.php ef-test/Tests
+
+after_script:
+ - php vendor/bin/coveralls -v
