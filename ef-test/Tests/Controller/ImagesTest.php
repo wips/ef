@@ -5,7 +5,7 @@ use Ef\Controller\Images;
 
 class VisualsTest extends \PHPUnit_Framework_TestCase {
     /**
-     * @covers \Ef\Controller\Visuals::all
+     * @covers \Ef\Controller\Images::all
      * @test1
      */
     public function all() {
