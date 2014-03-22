@@ -1,6 +1,8 @@
 <?php
 namespace Ef;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Application {
     private $app;
     private $controller;
@@ -13,8 +15,8 @@ class Application {
     public function start() {
         $controller = $this->controller;
         $app = $this->app;
-        $this->app->get('/images/{title}/{user}/{url}/{width}/{height}', function () use ($controller, $app) {
-            return $app->json($controller->all());
+        $this->app->get('/images', function (Request $request) use ($controller, $app) {
+            return $app->json($controller->all($request));
         });
         $this->app->run();
     }

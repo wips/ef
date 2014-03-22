@@ -13,7 +13,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase {
         $photos = array('some photos from API');
         $lastSavedPageNumber = 'some page number';
 
-        $storage = $this->getMock('Ef\Storage', array('save', 'getSavedPagesNumber'));
+        $storage = $this->getMock('Ef\Storage', array('save', 'getSavedPagesNumber', 'items'));
         $storage->expects($this->once())
                 ->method('save')
                 ->with($photos);

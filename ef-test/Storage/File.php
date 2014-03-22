@@ -25,5 +25,9 @@ class File extends \Ef\Storage {
 
         $this->fs->write(EF_STORE_FILE, serialize($toSave), true);
     }
+
+    function items(array $filter) {
+
+    }
 }
  

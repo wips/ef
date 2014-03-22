@@ -6,7 +6,10 @@ ini_set('display_errors', 1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use \Ef\Application;
-use \Ef\Controller\Pictures;
+use \Ef\Controller\Images;
 
-$app = new Application(new Silex\Application(), new Pictures());
+$silex = new Silex\Application();
+$silex['debug'] = true;
+
+$app = new Application($silex, new Images());
 $app->start();

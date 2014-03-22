@@ -6,12 +6,14 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase {
     private $app;
     private $controller;
     private $sut;
+    public $request;
 
     public function setUp() {
         $this->app = $this->getMockBuilder('Silex\Application', array('run', 'get', 'json'))
             ->disableOriginalConstructor()
             ->getMock();
         $this->controller = $this->getMock('\Ef\Controller\Pictures', array('all'));
+        $this->request = $this->getMock('Symfony\Component\HttpFoundation\Request');
         $this->sut = new Application($this->app, $this->controller);
     }
 
@@ -35,14 +37,15 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase {
 
         $this->controller->expects($this->once())
             ->method('all')
+            ->with($this->request)
             ->will($this->returnValue($result));
 
         $self = $this;
         $this->app->expects($this->once())
             ->method('get')
-            ->with('/images/{title}/{user}/{url}/{width}/{height}')
+            ->with('/images')
             ->will($this->returnCallback(function ($route, $callback) use ($self, $json) {
-                $handlerResult = $callback();
+                $handlerResult = $callback($self->request);
                 $self->assertEquals($handlerResult, $json);
             }));
 
