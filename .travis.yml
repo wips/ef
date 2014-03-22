@@ -5,6 +5,8 @@ php:
 
 install:
   - composer install
+  - composer install --dev
+  - composer update
 
 script:
   - mkdir -p build/logs
