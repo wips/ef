@@ -3,6 +3,7 @@ namespace Ef\Controller;
 
 use Ef\Storage\FilterBuilder;
 use Ef\Storage;
+use Symfony\Component\HttpFoundation\Request;
 
 class Images extends AbstractController {
     private $filterBuilder;

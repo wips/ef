@@ -11,7 +11,7 @@ class VisualsTest extends \PHPUnit_Framework_TestCase {
     public function all() {
         $filterParameters = array('any' => 'filter parameters');
         $images = array();
-        $request = $this->getMock('Ef\Controller\Request');
+        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
         $filterBuilder = $this->getMock('\Ef\Storage\FilterBuilder', array('build'));
         $filterBuilder->expects($this->once())
