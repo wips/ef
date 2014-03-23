@@ -8,7 +8,7 @@ class Serializer {
         $serialized = array();
         foreach ($photos as $photo) {
             $sizes = $photo->getSizes();
-            $sizes = $sizes[Phlickr_Photo::SIZE_ORIGINAL];
+            $sizes = $sizes['o'];
             $serialized[] = array(
                 $sizes[0],
                 $sizes[1],
