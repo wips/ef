@@ -13,6 +13,7 @@ use \Ef\Storage\FilterBuilder;
 use Gaufrette\Filesystem;
 use Gaufrette\Adapter\Local as LocalAdapter;
 
+// dependencies set up
 $fsRoot = __DIR__ . '/../scraping';
 $silex = new Silex\Application();
 $storage = new File(new Filesystem(new LocalAdapter($fsRoot)));

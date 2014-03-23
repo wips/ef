@@ -31,7 +31,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase {
      * @covers \Ef\Application::start
      * @test
      */
-    public function handlesGetForImages() {
+    public function handlesPostForImages() {
         $result = array();
         $json = 'string';
 
@@ -42,7 +42,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase {
 
         $self = $this;
         $this->app->expects($this->once())
-            ->method('get')
+            ->method('post')
             ->with('/images')
             ->will($this->returnCallback(function ($route, $callback) use ($self, $json) {
                 $handlerResult = $callback($self->request);
