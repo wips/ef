@@ -1,6 +1,7 @@
 <?php
 namespace Ef\Tests;
 use Ef\Serializer;
+use Phlickr_Photo;
 
 class SerializerTest extends \PHPUnit_Framework_TestCase {
 
@@ -16,7 +17,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
         $serialized = array();
         foreach ($photos as $photo) {
             $sizes = $photo->getSizes();
-            $sizes = $sizes['o'];
+            $sizes = $sizes[Phlickr_Photo::SIZE_ORIGINAL];
             $url = sprintf(
                 "http://farm%d.static.flickr.com/%d/%s_%s.jpg",
                 $photo->getFarm(),
@@ -55,7 +56,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 
     private function createPhoto($width, $height, $title, $userId, $farm, $server, $id, $secret) {
         $sizes = array(
-            'o' => array($width, $height)
+            Phlickr_Photo::SIZE_ORIGINAL => array($width, $height)
         );
         $photo = $this->getMock('Object', array(
             'getSizes',

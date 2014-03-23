@@ -1,12 +1,14 @@
 <?php
 namespace Ef;
 
+use Phlickr_Photo;
+
 class Serializer {
     public function serialize(array $photos) {
         $serialized = array();
         foreach ($photos as $photo) {
             $sizes = $photo->getSizes();
-            $sizes = $sizes['o'];
+            $sizes = $sizes[Phlickr_Photo::SIZE_ORIGINAL];
             $serialized[] = array(
                 $sizes[0],
                 $sizes[1],
