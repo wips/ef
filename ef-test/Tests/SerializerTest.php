@@ -1,7 +1,6 @@
 <?php
 namespace Ef\Tests;
 use Ef\Serializer;
-use Phlickr_Photo;
 
 class SerializerTest extends \PHPUnit_Framework_TestCase {
 
