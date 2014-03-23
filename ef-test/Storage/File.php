@@ -11,8 +11,7 @@ namespace Ef\Storage {
         }
 
         function getSavedPagesNumber() {
-            $content = $this->fs->read(EF_STORE_FILE);
-            return sizeof(unserialize($content)) / EF_IMG_PER_PAGE;
+            return sizeof($this->getAll()) / EF_IMG_PER_PAGE;
         }
 
         function save(array $data) {
@@ -28,7 +27,18 @@ namespace Ef\Storage {
         }
 
         function items(array $filter) {
+            return array_filter($this->getAll(), function ($picture) use ($filter) {
+                for ($i = 0; $i < sizeof($picture); $i++) {
+                    if ($filter[$i] !== null && $picture[$i] != $filter[$i]) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
 
+        private function getAll() {
+            return unserialize($this->fs->read(EF_STORE_FILE));
         }
     }
 }
