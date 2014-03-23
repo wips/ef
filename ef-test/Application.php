@@ -16,7 +16,11 @@ class Application {
         $controller = $this->controller;
         $app = $this->app;
         $this->app->post('/images.json', function (Request $request) use ($controller, $app) {
-            return $app->json($controller->all($request));
+            return $app->json(
+                $controller->all($request),
+                200,
+                array('Access-Control-Allow-Origin' => '*')
+            );
         });
         $this->app->run();
     }

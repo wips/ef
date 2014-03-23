@@ -51,7 +51,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase {
 
         $this->app->expects($this->once())
             ->method('json')
-            ->with($result)
+            ->with($result, 200, array('Access-Control-Allow-Origin' => '*'))
             ->will($this->returnValue($json));
 
         $this->sut->start();
