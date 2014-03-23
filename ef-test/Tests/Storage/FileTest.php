@@ -42,7 +42,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     private function filtrationLogicEncapsulatedHere($filter) {
         $pictures = unserialize($this->dataFromFile);
-        return array_filter($pictures, function ($picture) use ($filter) {
+        $filtered = array_filter($pictures, function ($picture) use ($filter) {
             for ($i = 0; $i < sizeof($picture); $i++) {
                 if ($filter[$i] !== null && $picture[$i] != $filter[$i]) {
                     return false;
@@ -50,6 +50,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
             }
             return true;
         });
+        return array_values($filtered);
     }
 
     /**

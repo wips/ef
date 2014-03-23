@@ -27,7 +27,7 @@ namespace Ef\Storage {
         }
 
         function items(array $filter) {
-            return array_filter($this->getAll(), function ($picture) use ($filter) {
+            $filtered = array_filter($this->getAll(), function ($picture) use ($filter) {
                 for ($i = 0; $i < sizeof($picture); $i++) {
                     if ($filter[$i] !== null && $picture[$i] != $filter[$i]) {
                         return false;
@@ -35,6 +35,7 @@ namespace Ef\Storage {
                 }
                 return true;
             });
+            return array_values($filtered);
         }
 
         private function getAll() {
