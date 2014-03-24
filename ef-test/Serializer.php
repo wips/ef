@@ -1,8 +1,6 @@
 <?php
 namespace Ef;
 
-use Phlickr_Photo;
-
 class Serializer {
     public function serialize(array $photos) {
         $serialized = array();
@@ -20,7 +18,7 @@ class Serializer {
         return $serialized;
     }
 
-    protected function imgUrl(\Object $photo) {
+    protected function imgUrl($photo) {
         return sprintf(
             "http://farm%d.static.flickr.com/%d/%s_%s.jpg",
             $photo->getFarm(),

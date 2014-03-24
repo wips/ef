@@ -15,7 +15,7 @@ class Application {
     public function start() {
         $controller = $this->controller;
         $app = $this->app;
-        $this->app->post('/images.json', function (Request $request) use ($controller, $app) {
+        $this->app->post('/', function (Request $request) use ($controller, $app) {
             return $app->json(
                 $controller->all($request),
                 200,
