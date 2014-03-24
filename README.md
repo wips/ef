@@ -13,3 +13,7 @@ Tests:
 
 1. Install PHPUnit
 2. Run "phpunit --bootstrap ef-test\Tests\bootstrap.php ef-test\Tests"
+
+API:
+
+1. Set web root to ef/api/public or just ef/, in this case ef/.htaccess will do the job for you
